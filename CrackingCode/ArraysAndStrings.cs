@@ -56,5 +56,80 @@ namespace CrackingCode
             // the character is seen. The second loop will then go through the arrays and compare them. if they are the same then the values are
             //premutation, else they are not. 
         }
+        public static string Urlify(string value)
+        {
+            var input = value.Trim();
+            var output = new StringBuilder();
+            foreach(var c in input)
+            {
+                if (c.ToString() == " ")
+                {
+                    output.Append("%20");
+                }
+                else output.Append(c);
+            }
+            return output.ToString();
+        }
+        public static bool OneAway(string x, string y)
+        {
+            //There are three types of edits that can be done to strings, insert, remove, replace.
+            //Given two strings, write a function to check if they are one edit(or zero edits) away.
+            //IE: pale,ple -> true
+            //pales, pale -> true
+            //pale, bale -> true
+            //pale, bake -> false
+            if (x == y) return true;
+            if ((x.Length - y.Length) > 1 || (x.Length - y.Length) < -1) return false;
+
+            var maxLength = x.Length > y.Length ? x.Length :  y.Length;
+            var counter = 0;
+            var c1 = new int[128];
+            for(var i = 0; i < maxLength; i++)
+            {
+                if(i < x.Length) c1[x[i]] += 1;
+                if (i < y.Length) c1[y[i]] -=1;
+            }
+            foreach(var n in c1)
+            {
+                if(n != 0)
+                {
+                    counter++;
+                }
+            }
+            if(counter > 2)
+            {
+                return false;
+            }
+            return true;
+        }
+        public static string StringCompression(string value)
+        {
+            //aaabbccd = a3b2c2d1 this will only happen if compressing the string returns a shorter string than the original. 
+
+            var compressedValues = new Dictionary<char, int>();
+            if (string.IsNullOrEmpty(value)) return value;
+
+            for (int i = 0; i < value.Length; i++)
+            {
+                if(!compressedValues.ContainsKey(value[i]))
+                {
+                    compressedValues.Add(value[i], 1);
+                }
+                else
+                {
+                    compressedValues[value[i]]++;
+                }
+            }
+            //O(n+m)
+            var output = new StringBuilder();
+            foreach (var t in compressedValues)
+            {
+                output.Append(t.Key.ToString());
+                output.Append(t.Value.ToString());
+            }
+
+            if (output.Length > value.Length) return value;
+            return output.ToString();
+        }
     }
 }
