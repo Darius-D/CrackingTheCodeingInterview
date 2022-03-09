@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CrackingCode
 {
-    public static class  Sorting
+    public static class  Sorting <T>
     {
         public static void BubbleSort(int[] arr, int length)
         {
@@ -25,12 +25,6 @@ namespace CrackingCode
                     arr[i + 1] = temp;
                 }
             }
-            //this is just to se what is happening on screen
-            foreach(var e in arr)
-            {
-                Console.Write(e+",");
-            }
-            Console.WriteLine("\n");
 
             BubbleSort(arr, length - 1);
             
@@ -102,6 +96,11 @@ namespace CrackingCode
             {
                 Console.Write(i + ",");
             }
+        }
+
+        public static void SortStack(Stack<T> stack)
+        {
+           
         }
     }
 }
