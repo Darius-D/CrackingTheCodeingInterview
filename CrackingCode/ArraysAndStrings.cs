@@ -106,29 +106,29 @@ namespace CrackingCode
         {
             //aaabbccd = a3b2c2d1 this will only happen if compressing the string returns a shorter string than the original. 
 
-            var compressedValues = new Dictionary<char, int>();
-            if (string.IsNullOrEmpty(value)) return value;
-
-            for (int i = 0; i < value.Length; i++)
+            var output = new StringBuilder();
+            int count = 0;
+            for(int i = 0 , j = i; j < value.Length; i++)
             {
-                if(!compressedValues.ContainsKey(value[i]))
+                
+                while (j < value.Length && value[i] == value[j] )
                 {
-                    compressedValues.Add(value[i], 1);
+                    count++;
+                    j++;
+                    
+                }
+                if (count > 0)
+                {
+                    output.Append(value[i]);
+                    output.Append(count);
                 }
                 else
                 {
-                    compressedValues[value[i]]++;
+                    output.Append(value[i]);
                 }
+                i = j;
+                count = 0;
             }
-            //O(n+m)
-            var output = new StringBuilder();
-            foreach (var t in compressedValues)
-            {
-                output.Append(t.Key.ToString());
-                output.Append(t.Value.ToString());
-            }
-
-            if (output.Length > value.Length) return value;
             return output.ToString();
         }
     }
