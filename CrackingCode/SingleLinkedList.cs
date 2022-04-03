@@ -71,5 +71,22 @@ namespace CrackingCode
             }
         }
 
+        //How I would reverse a linked list
+        //Find the tail node and set that ref to a variable.
+        //once I find the tail, I can then iterate until the currentnode.nxt == tail.
+        // I then take the tail and assign currentNode.next.next = currentNode;
+
+        //public void Reverse(SingleLinkedList<int> list)
+        //{
+        //    var currenthead = list.head;
+        //    Node<int> currentTail;
+        //    while(head.next != null)
+        //    {
+                
+        //    }
+
+        //}
+
+        
     }
 }

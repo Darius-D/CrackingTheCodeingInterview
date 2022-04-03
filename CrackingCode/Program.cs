@@ -11,8 +11,9 @@ namespace CrackingCode
 
             var test = "aaabbccaadd";
 
-            Console.WriteLine(ArraysAndStrings.StringCompression(test));
+            Console.WriteLine(Problems.compressString(test));
 
+           
 
         }
 

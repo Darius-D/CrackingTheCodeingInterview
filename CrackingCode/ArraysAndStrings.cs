@@ -125,9 +125,11 @@ namespace CrackingCode
                 else
                 {
                     output.Append(value[i]);
+                    i = j;
+                    count = 0;
                 }
-                i = j;
-                count = 0;
+
+                
             }
             return output.ToString();
         }

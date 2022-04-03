@@ -56,6 +56,8 @@ namespace CrackingCode
 
         }
 
+
+
         private static void Merge(int[] orgArray, int[]leftArray, int[]rightArray)
         {
             var leftLength = leftArray.Length;

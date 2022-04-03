@@ -16,6 +16,8 @@ namespace CrackingCode
         //60 min on a clock = 360/60 = 6 deg / min
         //hour hand moves 
 
+        //This is my simple solution that writes two values to the console.
+        //I can also have this method return a truple if I wanted a return value. 
         public static void ClockAngle(int hour, int min)
         {
             var hourAngle = (hour * 30) + (.5 * min);
@@ -33,5 +35,48 @@ namespace CrackingCode
             Console.WriteLine($"innerAngle:{innerAngle}");
             Console.WriteLine($"outterAngle:{outerAngle}");
         }
+
+        //Giving a string with repeating values, compress the string if the compressed value is shorter than the input. 
+        // IE: Input: aaabbcddaab output: a3b2cd2a2b
+
+        //For this problem I want to use a stack to track the previous value.
+
+        //Edge cases: input == null; input and compression are same length; number in string?
+
+        //Tests: aaabbbccc = a3b3c3
+
+        public static string compressString(string input)
+        {
+            StringBuilder output = new();
+
+            int counter = 0;
+
+            for(int i = 0, j = 0; j < input.Length; j++)
+            {
+                if(input[i] == input[j])
+                {
+                    counter++;
+                }
+                else
+                {
+                    
+                    output.Append(input[i]);
+                    if(counter > 1)
+                    {
+                        output.Append(counter);
+                    }
+                    counter = 0;
+                    i = j;
+                    j--;
+                }
+                if(j == input.Length -1)
+                {
+                    output.Append(input[i]);
+                    output.Append(counter);
+                }
+            }
+            return output.ToString();
+        }
+        //Reverse Fibonacci series when the first two numbers are provided. Example" 80, 50,30.20,10,10,0
     }
 }
